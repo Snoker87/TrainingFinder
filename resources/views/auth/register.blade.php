@@ -82,6 +82,16 @@ $customizerHidden = 'customizer-hide';
               </span>
             </div>
           </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Registration type</label>
+            <select class="form-select" id="exampleFormControlSelect1" name="type" aria-label="Default select example">
+              <option selected="">Choose Registration type</option>
+              <option value="Student">Student</option>
+              <option value="Supervisor">Supervisor</option>
+              <option value="Company">Company</option>
+            </select>
+            </div>
+            
           @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
           <div class="mb-1">
             <div class="form-check">

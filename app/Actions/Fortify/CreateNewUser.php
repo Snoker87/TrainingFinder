@@ -4,12 +4,13 @@ namespace App\Actions\Fortify;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Models\Company;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
-
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
@@ -22,7 +23,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        dd('hi there');
+        $input['name'] = $input['first_name']." ".$input['last_name'];
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -34,15 +35,31 @@ class CreateNewUser implements CreatesNewUsers
         return DB::transaction(function () use ($input) {
             return tap(User::create([
                 'name' => $input['name'],
-                'email' => $input['email'],
-                'type' => $input['type'],
+                'email' => request()->email,
+                'type' => request()->type,
+                'unv' => request()->unv,
+                'college' => request()->college,
+                'gpa' => request()->GPA,
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
                 $this->createTeam($user);
+                if($user->type == "company")
+                $this->createCompany($user->id);
             });
         });
-        
     }
+    public function createCompany($user_id){
+        $imageName = time().'.'.request()->image->extension();
+        request()->image->move(public_path('images'), $imageName);
+        $company = new Company();
+        $company->name = request()->company_name;
+        $company->slug = Str::slug(request()->company_name);
+        $company->site = request()->company_site;
+        $company->image = $imageName;
+        $company->hq = request()->company_hq;
+        $company->user_id = $user_id;
+        $company->save();
+        }
 
     /**
      * Create a personal team for the user.

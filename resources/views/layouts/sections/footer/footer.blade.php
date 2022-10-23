@@ -6,7 +6,7 @@
         document.write(new Date().getFullYear())
 
       </script>
-      , made with ❤️ by <a href="#" target="_blank" class="footer-link fw-bolder">Ahmed basic</a>
+      , made with ❤️ by <a href="#" target="_blank" class="footer-link fw-bolder">training finder</a>
     </div>
     <div>
       <a href="#" target="_blank" class="footer-link me-4">Documentation</a>

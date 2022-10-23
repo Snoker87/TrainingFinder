@@ -12,4 +12,7 @@ class RegisterBasic extends Controller
     $pageConfigs = ['myLayout' => 'blank'];
     return view('content.authentications.auth-register-basic', ['pageConfigs' => $pageConfigs]);
   }
+  public function store() {
+    dd(request()->first_name);
+  }
 }

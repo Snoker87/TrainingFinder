@@ -32,6 +32,8 @@ $containerNav = ($containerNav ?? 'container-xxl');
 @endphp
 
 @section('layoutContent')
+@include('sweetalert::alert')
+
 <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
   <div class="layout-container">
 

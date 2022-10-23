@@ -30,7 +30,10 @@ $container = ($container ?? 'container-xxl');
 @endphp
 
 @section('layoutContent')
+@include('sweetalert::alert')
+
 <div class="layout-wrapper layout-content-navbar {{ $isMenu ? '' : 'layout-without-menu' }}">
+  
   <div class="layout-container">
 
     @if ($isMenu)

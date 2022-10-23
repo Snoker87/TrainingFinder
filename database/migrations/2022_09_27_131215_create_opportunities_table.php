@@ -15,7 +15,18 @@ return new class extends Migration
     {
         Schema::create('opportunities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
+            $table->string('method')->nullable();
+            $table->string('email')->nullable();
+            $table->text('desc')->nullable();
+            $table->text('instructions')->nullable();
+            $table->text('requirments')->nullable();
+            $table->string('specialization')->nullable();
+            $table->string('gpa_limit')->nullable();
+            $table->boolean('nationality')->nullable();
+            $table->string('type')->nullable();
+            $table->date('start')->nullable();
+            $table->date('end')->nullable();
             $table->foreignId('company_id');
             $table->timestamps();
         });

@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Company;
+use App\Models\Request;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password','type','supervisor_id','opportunity_id'
+        'name', 'email', 'password','type','supervisor_id','opportunity_id','gpa','college','unv'
     ];
 
     /**
@@ -63,6 +64,9 @@ class User extends Authenticatable
     public function company()
     {
         return $this->hasOne(Company::class);
+    }
+    public function requests(){
+        return $this->hasMany(Request::class);
     }
     protected  function haveCompany(): Attribute
     {

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
   <title>@yield('title') | Training Finder</title>
-  <meta name="description" content="Ahmed Basic app" />
+  <meta name="description" content="Training finder for training" />
   <meta name="keywords" content="Learning,LMS">
   <!-- laravel CRUD token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,6 +18,7 @@
   <!-- Include Styles -->
   @include('layouts/sections/styles')
 
+  @include('sweetalert::alert')
   <!-- Include Scripts for customizer, helper, analytics, config -->
   @include('layouts/sections/scriptsIncludes')
 </head>

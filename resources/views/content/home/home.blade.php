@@ -1,123 +1,153 @@
 @extends('layouts/horizontalLayout')
 @section('title', 'Home')
 @section('content')
+<script>
+  async function query(data) {
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/Davlan/bert-base-multilingual-cased-ner-hrl",
+      {
+        headers: { Authorization: "Bearer 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" },
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+    const result = await response.json();
+    return result;
+  }
+  
+  query({"inputs": "تدريب صيفي في ارامكو جدة"}).then((response) => {
+    console.log(JSON.stringify(response));
+  });
+  
+  </script>
 <div class="">
-    <div class="row">
-        
+    <div class="row justify-content-center">
       <div class="faq-header d-flex flex-column justify-content-center align-items-center">
-        <h3 class="text-center"> ودك بتدريب صيفي صح؟ 😅 </h3>
+        <h3 class="text-center"> ودك بتدريب  صح؟ 😅 </h3>
         <div class="input-wrapper my-3 input-group input-group-merge">
           <span class="input-group-text" id="basic-addon1">
             <i class="bx bx-search-alt bx-xs text-muted"></i>
           </span>
-          <input type="text" class="form-control form-control-lg" placeholder="هنا تقدر تبحث عن الفرص المتاحة حول المملكة " aria-label="Search" aria-describedby="basic-addon1">
+          <div class="col-10">
+          <form action="{{ route('home.search') }}" method="post">
+            @csrf
+            <input type="text" name="search" class="form-control form-control-lg" placeholder="هنا تقدر تبحث عن الفرص المتاحة حول المملكة "
+             aria-label="Search" aria-describedby="basic-addon1">
+          </form>
+        </div>
         </div>
         <p class="text-center mb-0 px-3">اذا عندك فرص تدريبية ودك تضيفها تقدر من هنا</p>
       </div>
     </div>
     <div class="row py-3">
-      <div class="col-md-6 col-lg-8 mb-4 mb-md-0">
+      @foreach ($opportunities as $opportunity)
+      <div class="col-xl-4 col-lg-6 col-md-6">
         <div class="card">
-            <h5 class="card-header">اخر الفرص المتاحة  🔥</h5>
-          <div class="table-responsive text-nowrap">
-            <table class="table text-nowrap">
-              <thead>
-                <tr>
-                  <th>اسم الشركة</th>
-                  <th>نوع التدريب</th>
-                  <th>المكأفة</th>
-                  <th>المقاعد المتوفرة</th>
-                </tr>
-              </thead>
-              <tbody class="table table-borderless">
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <img src="{{ asset('assets/img/company/stc.png') }}" alt="Oneplus" height="32" width="32" class="me-2">
-                      <div class="d-flex flex-column">
-                        <span class="fw-semibold lh-1">الاتصالات السعودية</span>
-                        <small class="text-muted">شركة عامة</small>
+          <div class="card-header">
+            <div class="d-flex align-items-start">
+              <div class="d-flex align-items-start">
+                <div class="avatar me-3">
+                  <img src="{{ asset('images/'.$opportunity->company->image) }}" alt="Avatar" class="rounded-circle">
+                </div>
+                <div class="me-2">
+                  <h5 class="mb-1">{{ $opportunity->title }}</h5>
+                  <div class="client-info d-flex align-items-center">
+                    <h6 class="mb-0 me-1"> </h6><span>{{ $opportunity->company->name }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex align-items-center flex-wrap">
+              <div class="bg-lighter p-2 rounded me-auto mb-3">
+                  <span>التدريب</span>
+                <h6 class="mb-1">مستمر الى الان</h6>
+              </div>
+              <div class="text-end mb-3">
+                <h6 class="mb-1">Start Date: <span class="text-body fw-normal">{{ $opportunity->start }}</span></h6>
+                <h6 class="mb-1">Deadline: <span class="text-body fw-normal">{{ $opportunity->end }}</span></h6>
+              </div>
+            </div>
+            
+            <p class="mb-0" style="white-space: pre-line">{{ Str::limit($opportunity->desc,150) }} <span><a href="#">تفاصيل اكثر</a></span></p>
+          </div>
+          <div class="card-body border-top">
+              <ul class="p-0 m-0">
+                  <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
+                      <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-calculator"></i></span>
+                    </div>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">المعدل</h6>
+                        <small class="text-muted">الشرط المطلوب</small>
+                      </div>
+                      <div class="user-progress">
+                        <small class="fw-semibold">{{ $opportunity->gpa_limit }}</small>
                       </div>
                     </div>
-                  </td>
-                  <td><span class="badge bg-label-primary rounded-pill badge-center p-3 me-2"><i class="bx bx-mobile-alt bx-xs"></i></span> محاسبة مالية</td>
-                  <td>
-                    <small class="text-muted">None</small>
-
-                  </td>
-                  <td><a href="#"> <span class="badge bg-label-primary">التقديم الان</span></a> </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <img src="{{ asset('assets/img/company/Elm_logo.jpg') }}" alt="Apple" height="32" width="32" class="me-2">
-                      <div class="d-flex flex-column">
-                        <span class="fw-semibold lh-1"> علم</span>
-                        <small class="text-muted">شركة حكومية</small>
+                  </li>
+                  <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
+                      <span class="avatar-initial rounded bg-label-success"><i class="fa-solid fa-passport"></i></span>
+                    </div>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">الجنسية</h6>
+                        <small class="text-muted">شرط جنسية المتقدم</small>
+                      </div>
+                      <div class="user-progress">
+                        <small class="fw-semibold">سعوديين فقط</small>
                       </div>
                     </div>
-                  </td>
-                  <td><span class="badge bg-label-warning rounded-pill badge-center p-3 me-2"><i class="bx bx-mouse bx-xs"></i></span> تقنية المعلومات</td>
-                  <td>
-                    <div class="lh-1"><span class="text-primary fw-semibold">$149</span></div>
-                    <small class="text-muted">Fully Paid</small>
-                  </td>
-                  <td><a href="#"> <span class="badge bg-label-primary">التقديم الان</span></a> </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/img/company/ZAIN.png') }}" alt="Apple" height="32" width="32" class="me-2">
-                        <div class="d-flex flex-column">
-                        <span class="fw-semibold lh-1">زين للاتصالات</span>
-                        <small class="text-muted">شركة خاصة</small>
+                  </li>
+                  <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
+                      <span class="avatar-initial rounded bg-label-info"><i class="fa-solid fa-school"></i></span>
+                    </div>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">نوع التدريب</h6>
+                        <small class="text-muted">مدمج,حضوري,عن بعد</small>
+                      </div>
+                      <div class="user-progress">
+                        <small class="fw-semibold">{{ $opportunity->type }}</small>
                       </div>
                     </div>
-                  </td>
-                  <td><span class="badge bg-label-info rounded-pill badge-center p-3 me-2"><i class="bx bx-desktop bx-xs"></i></span> الشبكات</td>
-                  <td>
-                    <small class="text-muted">None</small>
-                  </td>
-                  <td><span class="badge bg-label-danger">انتهى التقديم</span></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/img/company/banda.png') }}" alt="Apple" height="32" width="32" class="me-2">
-                        <div class="d-flex flex-column">
-                        <span class="fw-semibold lh-1">اسواق بندة</span>
-                        <small class="text-muted">شركة خاصة</small>
+                  </li>
+                  <li class="d-flex">
+                    <div class="avatar flex-shrink-0 me-3">
+                      <span class="avatar-initial rounded bg-label-secondary"><i class="fa-solid fa-list"></i></span>
+                    </div>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">التخصص</h6>
+                        <small class="text-muted">عام او غيره</small>
+                      </div>
+                      <div class="user-progress">
+                        <small class="fw-semibold">{{ $opportunity->specialization }}</small>
                       </div>
                     </div>
-                  </td>
-                  <td><span class="badge bg-label-primary rounded-pill badge-center p-3 me-2"><i class="bx bx-mobile-alt bx-xs"></i></span> قانون</td>
-                  <td>
-                    <small class="text-muted">None</small>
-                  </td>
-                  <td><a href="#"> <span class="badge bg-label-primary">التقديم الان</span></a> </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/img/company/T2.png') }}" alt="Apple" height="32" width="32" class="me-2">
-                        <div class="d-flex flex-column">
-                        <span class="fw-semibold lh-1">شركة تي تو</span>
-                        <small class="text-muted">شركة نائشة</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-label-primary rounded-pill badge-center p-3 me-2"><i class="bx bx-mobile-alt bx-xs"></i></span> علوم حاسب</td>
-                  <td>
-                    <div class="lh-1"><span class="text-primary fw-semibold">$399</span></div>
-                    <small class="text-muted">Fully Paid</small>
-                  </td>
-                  <td><span class="badge bg-label-danger">انتهى التقديم</span></td>
-                </tr>
-              </tbody>
-            </table>
+                  </li>
+                </ul>
+                <hr class="m-2">
+                <div class="d-grid">
+                  @if(Auth::check() && Auth::user()->type == 'company')
+                  <button class="btn btn-primary btn-next" data-bs-toggle="modal" data-bs-target="#addOpp" disabled>التقديم</button>
+                  @elseif (Auth::check())
+                  <form action="{{'request/new/'.$opportunity->id}}" method="post">
+                    @csrf
+                  <button class="btn btn-primary btn-next" data-bs-toggle="modal" data-bs-target="#addOpp" type="submit">التقديم</button>
+                  </form>
+                  @else
+                  <a href="#" class="btn btn-primary btn-next">الرجاء تسجيل الدخول</a>
+                  @endif
+                </div>
           </div>
         </div>
       </div>
+      @endforeach
     </div>
   </div>
   <style>

@@ -93,7 +93,7 @@ $navbarDetached = ($navbarDetached ?? '');
               <li>
                 <a class="dropdown-item" href="{{route('profile.show')}}">
                   <i class="bx bx-user me-2"></i>
-                  <span class="align-middle">My Profile</span>
+                  <span class="align-middle">الملف الشخصي</span>
                 </a>
               </li>
               @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
