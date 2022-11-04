@@ -25,12 +25,12 @@ class CreateNewUser implements CreatesNewUsers
     {
         logger('You are here');
         $input['name'] = $input['first_name']." ".$input['last_name'];
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'type' => ['required','string'],
-            'password' => $this->passwordRules(),
-        ])->validate();
+        // Validator::make($input, [
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        //     'type' => ['required','string'],
+        //     'password' => $this->passwordRules(),
+        // ])->validate();
         logger('You are here after the validaion');
 
         return DB::transaction(function () use ($input) {
