@@ -31,7 +31,7 @@
           <div class="col-10">
           <form action="{{ route('home.search') }}" method="post">
             @csrf
-            <input type="text" name="search" class="form-control form-control-lg" placeholder="هنا تقدر تبحث عن الفرص المتاحة حول المملكة "
+            <input type="text" name="text" class="form-control form-control-lg" placeholder="هنا تقدر تبحث عن الفرص المتاحة حول المملكة "
              aria-label="Search" aria-describedby="basic-addon1">
           </form>
         </div>
