@@ -32,6 +32,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
+        logger('You are here after the validaion');
 
         return DB::transaction(function () use ($input) {
             return tap(User::create([
@@ -47,6 +48,8 @@ class CreateNewUser implements CreatesNewUsers
                 if($user->type == "company")
                 $this->createCompany($user->id);
             });
+            logger('You are here before returning');
+
         });
     }
     public function createCompany($user_id){
