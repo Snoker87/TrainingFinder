@@ -4,16 +4,18 @@ $navbarDetached = ($navbarDetached ?? '');
 @endphp
 
 <!-- Navbar -->
+
 @if(isset($navbarDetached) && $navbarDetached == 'navbar-detached')
+
 <nav class="layout-navbar {{$containerNav}} navbar navbar-expand-xl {{$navbarDetached}} align-items-center bg-navbar-theme" id="layout-navbar">
   @endif
   @if(isset($navbarDetached) && $navbarDetached == '')
   <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
     <div class="{{$containerNav}}">
       @endif
-
       <!--  Brand demo (display only for navbar-full and hide on below xl) -->
       @if(isset($navbarFull))
+
       <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
         <a href="{{url('/')}}" class="app-brand-link gap-2">
           <span class="app-brand-logo demo">
@@ -104,12 +106,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 </a>
               </li>
               @endif
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);">
-                  <i class="bx bx-credit-card me-2"></i>
-                  <span class="align-middle">Billing</span>
-                </a>
-              </li>
+
               @if (Auth::User() && Laravel\Jetstream\Jetstream::hasTeamFeatures())
               <li>
                 <div class="dropdown-divider"></div>
@@ -155,7 +152,7 @@ $navbarDetached = ($navbarDetached ?? '');
               <li>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i class='bx bx-power-off me-2'></i>
-                  <span class="align-middle">Logout</span>
+                  <span class="align-middle">تسجيل الخروج</span>
                 </a>
               </li>
               <form method="POST" id="logout-form" action="{{ route('logout') }}">

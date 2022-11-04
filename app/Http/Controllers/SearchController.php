@@ -23,12 +23,14 @@ class SearchController extends Controller
         $command      = "python $full_path_to_python_script \"{$arguments}\"";
         $output       = shell_exec($command);
         $output = json_encode($output);
+        logger($output);
         // $arr = array("[" => "", "]" => "");
         // $output = strtr($output,$arr);
         $output = str_replace("'",'"',$output);
         $output = substr($output, 1, -1);
         $output = substr($output, 0, -2);
         $results = json_decode($output);
+        logger($results);
         foreach($results as $result){
             var_dump($result->entity_group);
             var_dump($result->word);

@@ -39,6 +39,7 @@ $containerNav = ($containerNav ?? 'container-xxl');
 
     <!-- BEGIN: Navbar-->
     @if ($isNavbar)
+    
     @include('layouts/sections/navbar/navbar')
     @endif
     <!-- END: Navbar-->
@@ -49,7 +50,18 @@ $containerNav = ($containerNav ?? 'container-xxl');
 
       <!-- Content wrapper -->
       <div class="content-wrapper">
-
+        <div class="row justify-content-center p-1">
+          <div class="col-5 text-center">
+            <div class="alert alert-dark mb-0 alert-dismissible mb-0 text-center" role="alert">
+              <span class="badge badge-center rounded-pill bg-dark border-label-dark p-3 me-2"><i class="bx bx-error-circle fs-3 "></i></span>
+              <div class=" ps-1 text-center align-items-center">
+                <h6 class="alert-heading align-items-center fw-bold mb-1">Be Aware!! <span>All data shown in this page are fake generated for testing puropse</span>                </h6>
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+              </button>
+            </div>
+          </div>
+        </div>
         @if ($isMenu)
         @include('layouts/sections/menu/horizontalMenu')
         @endif

@@ -1,3 +1,4 @@
+
 @extends('layouts/horizontalLayout')
 @section('title', 'Home')
 @section('content')
