@@ -14,7 +14,6 @@ class OpportunityController extends Controller
         return view('content.company.opportunities',compact('company','opportunities'));
     }
     public function store(Request $request){
-        $this->validate($request,$output);
         $date = str_replace(' ','',$request->date);
         $dateArray =  explode( '-', $date);
         $opportunity = new Opportunity();
