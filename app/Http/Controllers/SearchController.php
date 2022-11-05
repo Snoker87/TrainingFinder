@@ -12,7 +12,7 @@ class SearchController extends Controller
 
         $arguments    = $request->text;
         $full_path_to_python_script = '../scripts/data.py';
-        $command      = "python $full_path_to_python_script \"{$arguments}\"";
+        $command      = "python3 $full_path_to_python_script \"{$arguments}\"";
         $output       = shell_exec($command);
         $output = json_encode($output);
         logger($output);
