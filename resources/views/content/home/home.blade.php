@@ -19,7 +19,6 @@
   query({"inputs": "تدريب صيفي في ارامكو جدة"}).then((response) => {
     console.log(JSON.stringify(response));
   });
-  
   </script>
 <div class="">
     <div class="row justify-content-center">
