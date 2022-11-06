@@ -32,8 +32,6 @@ class SearchController extends Controller
                 $org = $result->word;
             else if($result->entity_group == "LOC")
                 $loc = $result->word;
-            // var_dump($result->entity_group);
-            // var_dump($result->word);
         }
         if($org != null){
             $company = Company::where('name', 'LIKE', '%' . $org . '%')->first();
