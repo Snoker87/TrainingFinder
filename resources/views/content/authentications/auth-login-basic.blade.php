@@ -33,6 +33,15 @@ $customizerHidden = 'customizer-hide';
       <!-- Register -->
       <div class="card">
         <div class="card-body">
+          @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+          @endif
           <!-- Logo -->
           <div class="app-brand justify-content-center">
             <a href="{{url('/')}}" class="app-brand-link gap-2">
@@ -43,8 +52,8 @@ $customizerHidden = 'customizer-hide';
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-2">Welcome to {{config('variables.templateName')}}! 👋</h4>
-          <p class="mb-4">Please sign-in to your account and start the adventure</p>
+          <h4 class="mb-2">Welcome to TrainingFinder 👋</h4>
+          <p class="mb-4">Please sign-in to your waccount and start the adventure</p>
 
           <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
             @csrf
@@ -79,28 +88,10 @@ $customizerHidden = 'customizer-hide';
 
           <p class="text-center">
             <span>New on our platform?</span>
-            <a href="{{url('auth/register-basic')}}">
+            <a href="{{route('signup')}}">
               <span>Create an account</span>
             </a>
           </p>
-
-          <div class="divider my-4">
-            <div class="divider-text">or</div>
-          </div>
-
-          <div class="d-flex justify-content-center">
-            <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-              <i class="tf-icons bx bxl-facebook"></i>
-            </a>
-
-            <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-              <i class="tf-icons bx bxl-google-plus"></i>
-            </a>
-
-            <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-              <i class="tf-icons bx bxl-twitter"></i>
-            </a>
-          </div>
         </div>
       </div>
       <!-- /Register -->

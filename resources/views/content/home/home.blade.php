@@ -2,7 +2,7 @@
 @extends('layouts/horizontalLayout')
 @section('title', 'Home')
 @section('content')
-<script>
+{{-- <script>
   async function query(data) {
     const response = await fetch(
       "https://api-inference.huggingface.co/models/Davlan/bert-base-multilingual-cased-ner-hrl",
@@ -19,7 +19,7 @@
   query({"inputs": "تدريب صيفي في ارامكو جدة"}).then((response) => {
     console.log(JSON.stringify(response));
   });
-  </script>
+  </script> --}}
 <div class="">
     <div class="row justify-content-center">
       <div class="faq-header d-flex flex-column justify-content-center align-items-center">

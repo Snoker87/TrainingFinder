@@ -50,7 +50,7 @@ $containerNav = ($containerNav ?? 'container-xxl');
 
       <!-- Content wrapper -->
       <div class="content-wrapper">
-        <div class="row justify-content-center p-1">
+        {{-- <div class="row justify-content-center p-1">
           <div class="col-5 text-center">
             <div class="alert alert-dark mb-0 alert-dismissible mb-0 text-center" role="alert">
               <span class="badge badge-center rounded-pill bg-dark border-label-dark p-3 me-2"><i class="bx bx-error-circle fs-3 "></i></span>
@@ -61,7 +61,7 @@ $containerNav = ($containerNav ?? 'container-xxl');
               </button>
             </div>
           </div>
-        </div>
+        </div> --}}
         @if ($isMenu)
         @include('layouts/sections/menu/horizontalMenu')
         @endif

@@ -55,9 +55,6 @@ $navbarDetached = ($navbarDetached ?? '');
             <a href="/sign-in"  class="btn btn-sm btn-primary">
               <i class='bx bxs-log-in-circle' ></i>&nbsp; تسجيل دخول
             </a>
-            <a href="/new/opportunity"  class="btn btn-sm btn-primary">
-              <i class='bx bxs-message-square-add'></i> &nbsp; اضافة فرصة تدريبية جديدة
-            </a>
           </div>
           @endif
           @if(Auth::user())

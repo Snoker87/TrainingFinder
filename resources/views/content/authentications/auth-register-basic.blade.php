@@ -115,7 +115,15 @@ $customizerHidden = 'customizer-hide';
         max-width: 1000px !important;
       }
       </style>
-
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
     <div class="col-md-10 col-lg-10 col-sm-12 mb-4">
      <div class="bs-stepper wizard-vertical vertical wizard-vertical-icons-example mt-2">
         <div class="bs-stepper-header">
