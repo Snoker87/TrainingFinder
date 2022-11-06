@@ -23,7 +23,11 @@
 <div class="">
     <div class="row justify-content-center">
       <div class="faq-header d-flex flex-column justify-content-center align-items-center">
+        @if($opportunities != null )
         <h3 class="text-center"> ودك بتدريب  صح؟ 😅 </h3>
+        @else
+        <h3 class="text-center"> 💔 نعتذر منك, لم نستطيع العثور على اي تدريب يطابق بحثك </h3>
+        @endif
         <div class="input-wrapper my-3 input-group input-group-merge">
           <span class="input-group-text" id="basic-addon1">
             <i class="bx bx-search-alt bx-xs text-muted"></i>
@@ -40,6 +44,7 @@
       </div>
     </div>
     <div class="row py-3">
+      @if($opportunities != null)
       @foreach ($opportunities as $opportunity)
       <div class="col-xl-4 col-lg-6 col-md-6">
         <div class="card">
@@ -148,6 +153,7 @@
         </div>
       </div>
       @endforeach
+      @endif
     </div>
   </div>
   <style>

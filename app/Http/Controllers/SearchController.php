@@ -7,16 +7,15 @@ use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Illuminate\Support\Facades\DB;
-use app\Models\Opportunity;
 use Stichoza\GoogleTranslate\GoogleTranslate;
+use App\Models\Opportunity;
 
 class SearchController extends Controller
 {
     public function proccess(Request $request) {
-
         $arguments    = $request->text;
         $full_path_to_python_script = '../scripts/data.py';
-        $command      = "python3 $full_path_to_python_script \"{$arguments}\"";
+        $command      = "python $full_path_to_python_script \"{$arguments}\"";
         $output       = shell_exec($command);
         $output = json_encode($output);
         logger($output);
@@ -27,21 +26,45 @@ class SearchController extends Controller
         logger($results);
         $org = null;
         $loc = null;
+        $opportunities = null;
+        if ($results == null)
+        return view('content.home.home',compact('opportunities'));
+
         foreach($results as $result){
             if($result->entity_group == "ORG")
                 $org = $result->word;
             else if($result->entity_group == "LOC")
                 $loc = $result->word;
         }
-        if($org != null){
+        if($org != null && $loc == null){
             $company = Company::where('name', 'LIKE', '%' . $org . '%')->first();
             $opportunities = $company->opportunities;
             return view('content.home.home',compact('opportunities'));
         }
+        if($loc != null && $org == null){
+            $opportunities = Opportunity::where('city', 'LIKE', '%' . $loc . '%')->get();
+            return view('content.home.home',compact('opportunities'));
+        }
+        if($loc != null && $org != null){
+            $opportunities = Opportunity::
+            where('city', 'LIKE', '%' . $loc . '%')
+            ->join('companies', 'companies.id', '=', 'opportunities.company_id')
+            ->where('name', 'LIKE', '%' . $org . '%')
+            ->get();
+            return view('content.home.home',compact('opportunities'));
+        }
         
-        // dd("just hope it's work !".$org);
-
-
+            // Double where.
+            // $company = DB::table('companies')
+            //     ->where('name', 'LIKE', '%' . $org . '%')
+            //     ->where('hq', 'LIKE', '%' . $loc . '%')
+            //     ->first();
+            // Inner join for DB 
+            // $opportunities = DB::table('opportunities')
+            // ->where('city', 'LIKE', '%' . $loc . '%')
+            // ->join('companies', 'companies.id', '=', 'opportunities.company_id')
+            // ->where('name', 'LIKE', '%' . $org . '%')
+            // ->get();
 
     }
 }

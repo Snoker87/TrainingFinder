@@ -21,6 +21,7 @@ class OpportunityController extends Controller
         $opportunity->start = date("Y-m-d", strtotime($dateArray[0]));  ;
         $opportunity->end = date("Y-m-d", strtotime($dateArray[1]));  ;
         $opportunity->email = $request->email;
+        $opportunity->city = $request->city;
         $opportunity->type = $request->type;
         $opportunity->specialization = $request->specialization;
         $opportunity->requirments = $request->requirments; 

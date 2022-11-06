@@ -166,25 +166,7 @@
                         </li>
                       </ul>
                       <hr class="m-2">
-                  <div class="d-flex align-items-center">
-                    <div class="d-flex align-items-center">
-                      <ul class="list-unstyled d-flex align-items-center avatar-group mb-0 zindex-2">
-                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="" class="avatar avatar-sm pull-up" data-bs-original-title="Jimmy Ressula">
-                          <img class="rounded-circle" src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/4.png" alt="Avatar">
-                        </li>
-                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="" class="avatar avatar-sm pull-up" data-bs-original-title="Kristi Lawker">
-                          <img class="rounded-circle" src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/2.png" alt="Avatar">
-                        </li>
-                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="" class="avatar avatar-sm pull-up me-2" data-bs-original-title="Danny Paul">
-                          <img class="rounded-circle" src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/7.png" alt="Avatar">
-                        </li>
-                        <li><small class="text-muted">458 Members</small></li>
-                      </ul>
-                    </div>
-                    <div class="ms-auto">
-                      <a href="javascript:void(0);" class="text-body"><i class="bx bx-chat"></i> 98</a>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -221,6 +203,20 @@
               <option value="IT">تقنية المعلومات</option>
               <option value="FT">ادارة مالية</option>
               <option value="HR">موارد بشرية</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="specialization">المدينة</label>
+            <select id="city" name="city" class="form-select" aria-label="Default select example">
+              <option value="GENERAL" selected="">المدينة </option>
+              <option value="riyadh">الرياض</option>
+              <option value="jeddah">جدة</option>
+              <option value="tabuk">تبوك</option>
+              <option value="dammam">الدمام</option>
+              <option value="dubai">دبي</option>
+              <option value="sydney">سيدني,استراليا</option>
+              <option value="int">جميع المدن</option>
+
             </select>
           </div>
           <div class="col-12 col-md-6  ">
