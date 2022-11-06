@@ -28,7 +28,7 @@ class SearchController extends Controller
         $org = null;
         $loc = null;
 
-        $opportunities = true;
+        $opportunities = null;
         if ($results == null)
         return view('content.home.home',compact('opportunities'));
 
