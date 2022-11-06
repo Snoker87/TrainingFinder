@@ -11,7 +11,7 @@
         <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> معلومات الشركة</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ '../'.$company->slug.'/'.'opportunities' }}"><i class="bx bx-detail me-1"></i> الفرص التدريبية</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ '../'.$company->slug.'/'.'api' }}"><i class="bx bx-lock-alt me-1"></i> واجهة برمجة التطبيقات (API) </a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ '../'.$company->slug.'/'.'api' }}"><i class="bx bx-archive me-1"></i>متابعة التقديمات</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ '../'.$company->slug.'/'.'requests' }}"><i class="bx bx-archive me-1"></i>متابعة التقديمات</a></li>
 
       </ul>
       <div class="card mb-4">

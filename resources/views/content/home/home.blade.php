@@ -2,24 +2,7 @@
 @extends('layouts/horizontalLayout')
 @section('title', 'Home')
 @section('content')
-{{-- <script>
-  async function query(data) {
-    const response = await fetch(
-      "https://api-inference.huggingface.co/models/Davlan/bert-base-multilingual-cased-ner-hrl",
-      {
-        headers: { Authorization: "Bearer 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" },
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    );
-    const result = await response.json();
-    return result;
-  }
-  
-  query({"inputs": "تدريب صيفي في ارامكو جدة"}).then((response) => {
-    console.log(JSON.stringify(response));
-  });
-  </script> --}}
+
 <div class="">
     <div class="row justify-content-center">
       <div class="faq-header d-flex flex-column justify-content-center align-items-center">
@@ -46,7 +29,7 @@
     <div class="row py-3">
       @if($opportunities != null)
       @foreach ($opportunities as $opportunity)
-      <div class="col-xl-4 col-lg-6 col-md-6">
+      <div class="col-xl-4 col-lg-6 col-md-6 pt-3">
         <div class="card">
           <div class="card-header">
             <div class="d-flex align-items-start">

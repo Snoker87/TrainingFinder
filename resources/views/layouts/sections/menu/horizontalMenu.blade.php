@@ -12,16 +12,16 @@ $configData = Helper::appClasses();
           <div data-i18n="Dashboards">الرئيسية</div>
         </a>
       </li>
-      <li class="menu-item @if(Route::currentRouteName()=='teams.show') active open @endif">
-        <a href="#" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-list-ol"></i>
-          <div data-i18n="Dashboards">الفرص التدريبية </div>
+      <li class="menu-item @if(Route::currentRouteName()=='home.compains') active open @endif">
+        <a href="{{ route('home.compains') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-list-minus"></i>
+          <div data-i18n="Dashboards">قائمة الشركات </div>
         </a>
       </li>
       <li class="menu-item @if(Route::currentRouteName()=='teams.show') active open @endif">
         <a href="#" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-list-minus"></i>
-          <div data-i18n="Dashboards">قائمة الشركات </div>
+          <i class="menu-icon tf-icons bx bx-list-ol"></i>
+          <div data-i18n="Dashboards">الفرص التدريبية </div>
         </a>
       </li>
       <li class="menu-item @if(Route::currentRouteName()=='about') active open @endif">

@@ -6,8 +6,10 @@ use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\company\ApiController;
 use App\Http\Controllers\company\OpportunityController;
 use App\Http\Controllers\company\CompanyController;
+use App\Http\Controllers\company\RequestsController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\home\CompainsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +24,9 @@ use App\Http\Controllers\SearchController;
 
 $controller_path = 'App\Http\Controllers';
 
-// Main Page Route
+// Main Pages Route
 Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/compains', [CompainsController::class,'index'])->name('home.compains');
 
 //Student 
 Route::get('/student/dashboard', $controller_path . '\pages\HomePage@index')->name('pages-home');
@@ -42,6 +45,7 @@ Route::post('/company/update', [CompanyController::class,'update'])->name('compa
 Route::get('/{company:slug}/opportunities', [OpportunityController::class,'index'])->name('company.opportunities');
 Route::post('/opportunities/new', [OpportunityController::class,'store'])->name('company.opportunities.new');
 Route::get('/{company:slug}/api', [ApiController::class,'index'])->name('company.api');
+Route::get('/{company:slug}/requests', [RequestsController::class,'index'])->name('company.requests');
 Route::post('/api/new', [ApiController::class,'store'])->name('company.api.new');
 Route::post('/', [ApiController::class,'store'])->name('company.api.new');
 Route::post('/search', [SearchController::class,'proccess'])->name('home.search');
