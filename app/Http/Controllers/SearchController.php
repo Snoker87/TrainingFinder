@@ -13,9 +13,10 @@ use App\Models\Opportunity;
 class SearchController extends Controller
 {
     public function proccess(Request $request) {
+        $tr = new GoogleTranslate(); 
         $arguments    = $request->text;
         $full_path_to_python_script = '../scripts/data.py';
-        $command      = "python $full_path_to_python_script \"{$arguments}\"";
+        $command      = "python3 $full_path_to_python_script \"{$arguments}\"";
         $output       = shell_exec($command);
         $output = json_encode($output);
         logger($output);
@@ -26,7 +27,8 @@ class SearchController extends Controller
         logger($results);
         $org = null;
         $loc = null;
-        $opportunities = null;
+
+        $opportunities = true;
         if ($results == null)
         return view('content.home.home',compact('opportunities'));
 
