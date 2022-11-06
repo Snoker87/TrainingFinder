@@ -27,16 +27,21 @@ class SearchController extends Controller
         logger($results);
         $org = null;
         $loc = null;
-
         $opportunities = null;
+        $online = null;
+        if (str_contains($request, 'online')) { 
+            $online = true;
+        }
         if ($results == null)
         return view('content.home.home',compact('opportunities'));
 
         foreach($results as $result){
             if($result->entity_group == "ORG")
                 $org = $result->word;
-            else if($result->entity_group == "LOC")
-                $loc = $result->word;
+            else if($result->entity_group == "LOC") 
+            {
+                $loc = $tr->setSource()->setTarget('en')->translate($result->word);
+            }
         }
         if($org != null && $loc == null){
             $company = Company::where('name', 'LIKE', '%' . $org . '%')->first();
