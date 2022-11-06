@@ -45,6 +45,8 @@ class SearchController extends Controller
         }
         if($org != null && $loc == null){
             $company = Company::where('name', 'LIKE', '%' . $org . '%')->first();
+            if($company == null)
+            return;
             $opportunities = $company->opportunities;
             return view('content.home.home',compact('opportunities'));
         }
