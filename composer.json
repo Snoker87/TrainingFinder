@@ -20,7 +20,8 @@
     "laravel/tinker": "^2.7",
     "livewire/livewire": "^2.5",
     "meilisearch/meilisearch-php": "^0.24.2",
-    "realrashid/sweet-alert": "^5.1"
+    "realrashid/sweet-alert": "^5.1",
+    "stichoza/google-translate-php": "^4.1"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9.1",

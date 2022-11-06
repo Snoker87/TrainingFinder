@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Illuminate\Support\Facades\DB;
+use app\Models\Opportunity;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class SearchController extends Controller
 {
@@ -21,11 +25,23 @@ class SearchController extends Controller
         $output = substr($output, 0, -2);
         $results = json_decode($output);
         logger($results);
+        $org = null;
+        $loc = null;
         foreach($results as $result){
-            var_dump($result->entity_group);
-            var_dump($result->word);
+            if($result->entity_group == "ORG")
+                $org = $result->word;
+            else if($result->entity_group == "LOC")
+                $loc = $result->word;
+            // var_dump($result->entity_group);
+            // var_dump($result->word);
         }
-        dd("just hope it's work !");
+        if($org != null){
+            $company = Company::where('name', 'LIKE', '%' . $org . '%')->first();
+            $opportunities = $company->opportunities;
+            return view('content.home.home',compact('opportunities'));
+        }
+        
+        // dd("just hope it's work !".$org);
 
 
 
