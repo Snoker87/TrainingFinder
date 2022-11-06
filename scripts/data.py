@@ -7,7 +7,7 @@ def query(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)
 	return response.json()
 
-text2 = "summer training in jeddah in STC company"
+# text2 = "summer training in jeddah in STC company"
 text = sys.argv[1]
 # print(type(text2))
 output = query({
