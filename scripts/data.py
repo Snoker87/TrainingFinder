@@ -1,7 +1,7 @@
 import requests
 import sys
 API_URL = "https://api-inference.huggingface.co/models/Davlan/bert-base-multilingual-cased-ner-hrl"
-headers = {"Authorization": "Bearer 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"}
+headers = {"Authorization": "Bearer *****************"}
 
 def query(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)
